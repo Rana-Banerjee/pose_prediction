@@ -6,11 +6,13 @@ Currently displays only the skeleton
 
 ## Setup
 - Create a virtual environment with python version 3.7
+- Activate the environment
 - Install all dependencies as given in requirements.txt
 
 ## Execution
-- Via command line: `python3 pose_display.py`
-
+'''
+`python3 pose_display.py`
+'''
 ### To dos:
 - Add functionality to display and highlight the joints and show the confidence scores
 - Increase throughput, decrease latency via multi threading
