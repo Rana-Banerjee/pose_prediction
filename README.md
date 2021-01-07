@@ -1,7 +1,7 @@
 # Pose prediction on webcam
-Using OpenPifPaf to run multi-person pose estimation on the webcam feed
-Uses opencv to capture the web camera stream and overlays the pose predictions before display
-Currently displays only the skeleton
+Using OpenPifPaf to run multi-person pose estimation on the webcam feed. 
+Uses opencv to capture the web camera stream and overlays the pose predictions before display. 
+Currently displays only the skeleton overlay.
 
 ## Project file details
 - `pose_display.py` : Main code that takes webcam feed, performs pose detections and diplays it
