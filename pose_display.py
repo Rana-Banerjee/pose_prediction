@@ -12,6 +12,7 @@ import matplotlib
 openpifpaf.decoder.CifSeeds.threshold = 0.5
 openpifpaf.decoder.nms.Keypoints.keypoint_threshold = 0.2
 openpifpaf.decoder.nms.Keypoints.instance_threshold = 0.2
+
 #RGB color pallate
 COLORS = [
     (31,119,180),
@@ -76,6 +77,7 @@ class PoseDisplay():
 
     # Function to display webcam output with pose overlays
     def display_output(self):
+        cv2.destroyAllWindows()
         cap = cv2.VideoCapture(0)
         while(True):
             # Capture frame-by-frame
