@@ -11,6 +11,8 @@ Currently displays only the skeleton
 
 ## Execution
 ```
+git clone https://github.com/Rana-Banerjee/pose_prediction.git
+cd pose_prediction
 python3 pose_display.py
 ```
 ### To dos:
