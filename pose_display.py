@@ -7,7 +7,6 @@ import PIL
 from PIL import Image
 import requests
 import torch
-#from painters import KeypointPainter
 import matplotlib
 
 openpifpaf.decoder.CifSeeds.threshold = 0.5
@@ -131,7 +130,9 @@ class PoseDisplay():
         cap.release()
         cv2.destroyAllWindows()
 
+def main():
+    pd = PoseDisplay()
+    pd.display_output()
 
-
-pd = PoseDisplay()
-pd.display_output()
+if __name__ == "__main__":
+    main()
