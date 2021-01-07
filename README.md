@@ -21,3 +21,4 @@ python3 pose_display.py
 
 ### Sample demo images:
 ![alt text](https://github.com/Rana-Banerjee/pose_prediction/blob/main/images/1.jpg?raw=true)
+![alt text](https://github.com/Rana-Banerjee/pose_prediction/blob/main/images/2.jpg?raw=true)
