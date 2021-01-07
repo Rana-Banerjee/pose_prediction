@@ -19,6 +19,8 @@ git clone https://github.com/Rana-Banerjee/pose_prediction.git
 cd pose_prediction
 python3 pose_display.py
 ```
+Press 'q' key to exit
+
 ### To dos:
 - Add functionality to display and highlight the joints and show the confidence scores
 - Increase throughput, decrease latency via multi threading
