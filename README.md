@@ -20,4 +20,4 @@ python3 pose_display.py
 - Increase throughput, decrease latency via multi threading
 
 ### Sample demo images:
-![alt text](https://github.com/Rana-Banerjee/pose_prediction/blob/main/images/1.png?raw=true)
+![alt text](https://github.com/Rana-Banerjee/pose_prediction/blob/main/images/1.jpg?raw=true)
