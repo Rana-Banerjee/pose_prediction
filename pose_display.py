@@ -7,10 +7,35 @@ import PIL
 from PIL import Image
 import requests
 import torch
+#from painters import KeypointPainter
+import matplotlib
 
 openpifpaf.decoder.CifSeeds.threshold = 0.5
 openpifpaf.decoder.nms.Keypoints.keypoint_threshold = 0.2
 openpifpaf.decoder.nms.Keypoints.instance_threshold = 0.2
+#RGB color pallate
+COLORS = [
+    (31,119,180),
+    (174,199,232),
+    (255, 127, 14),
+    (255, 187, 120),
+    (44, 160, 44),
+    (152, 223, 138),
+    (214, 39, 40),
+    (255, 152, 150),
+    (148, 103, 189),
+    (197, 176, 213),
+    (140, 86, 75),
+    (196, 156, 148),
+    (227, 119, 194),
+    (247, 182, 210),
+    (127, 127, 127),
+    (199, 199, 199),
+    (188, 189, 34),
+    (219, 219, 141),
+    (23, 190, 207),
+    (158, 218, 229)
+]
 
 class PoseDisplay():
     def __init__(self):
@@ -62,33 +87,50 @@ class PoseDisplay():
     # Function to display webcam output with pose overlays
     def display_output(self):
         cap = cv2.VideoCapture(0)
-        keypoint_painter = openpifpaf.show.KeypointPainter(color_connections=True, linewidth=6)
-
+        #keypoint_painter = KeypointPainter(color_connections=True, linewidth=6)
+        count = 0 
         while(True):
             # Capture frame-by-frame
             ret, frame = cap.read()
-
+            
             # Our operations on the frame come here
-            overlay_output = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+            overlay_output=frame
+
             # Call the perform_pose_prediction with the captured frame and get the resulting overlayed frame
             predictions = self.perform_pose_prediction(frame)
-            
-            #for i, ann in enumerate(predictions):
-            #    print(i, ann)
+            for i, ann in enumerate(predictions):
+                kps = ann.data
+                assert kps.shape[1] == 3
+                x = kps[:, 0] * 1
+                y = kps[:, 1] * 1
+                v = kps[:, 2]
+                skeleton = ann.skeleton
+                if not np.any(v > 0):
+                    break
+                lines, line_colors, line_styles = [], [], []
+                for ci, (j1i, j2i) in enumerate(np.array(skeleton) - 1):
+                    if v[j1i] > 0 and v[j2i] > 0:
+                        lines.append([(x[j1i], y[j1i]), (x[j2i], y[j2i])])
+                        line_colors.append(COLORS[ci][::-1] )
+                        if v[j1i] > 0.5 and v[j2i] > 0.5:
+                            line_styles.append('solid')
+                        else:
+                            line_styles.append('dashed')
+                for i, (line,line_color) in enumerate(zip(lines,line_colors)):
+                    start_point = line[0]
+                    end_point = line[1]
+                    overlay_output = cv2.line(overlay_output, start_point, end_point,line_color , 2)
+                    #print(i, lines, line_colors, line_styles)
 
-            with openpifpaf.show.image_canvas(overlay_output) as ax:
-                keypoint_painter.annotations(ax, predictions)
-                break
-            
-            # Create a overlay of the predictions on the frame
-            #overlay_output = frame 
+
             # Display the resulting frame
-            #cv2.imshow('frame',overlay_output)
+            cv2.imshow('Figure',overlay_output)
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break
         # When everything done, release the capture
         cap.release()
         cv2.destroyAllWindows()
+
 
 
 pd = PoseDisplay()
