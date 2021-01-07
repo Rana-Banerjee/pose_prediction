@@ -51,17 +51,9 @@ class PoseDisplay():
     # Function to perform pose prediction on given images
     def perform_pose_prediction(self,frame):
 
-        # Load an Example Image
-        #image_response = requests.get('https://raw.githubusercontent.com/vita-epfl/openpifpaf/master/docs/coco/000000081988.jpg')
-        #pil_im = PIL.Image.open(frame).convert('RGB')
-        #im = np.asarray(pil_im)
         im=frame
         #Comvert numpy array to PIL Image
         pil_im = Image.fromarray(im)
-
-        #with openpifpaf.show.image_canvas(im) as ax:
-        #    pass
-    
 
         # Preprocessing, Dataset
         preprocess = openpifpaf.transforms.Compose([
@@ -79,15 +71,12 @@ class PoseDisplay():
         # Prediction
         for images_batch, _, __ in loader:
             predictions = self.processor.batch(self.net, images_batch, device=self.device)[0]
-
-        
+       
         return predictions
 
     # Function to display webcam output with pose overlays
     def display_output(self):
         cap = cv2.VideoCapture(0)
-        #keypoint_painter = KeypointPainter(color_connections=True, linewidth=6)
-        count = 0 
         while(True):
             # Capture frame-by-frame
             ret, frame = cap.read()
@@ -119,8 +108,6 @@ class PoseDisplay():
                     start_point = line[0]
                     end_point = line[1]
                     overlay_output = cv2.line(overlay_output, start_point, end_point,line_color , 2)
-                    #print(i, lines, line_colors, line_styles)
-
 
             # Display the resulting frame
             cv2.imshow('Figure',overlay_output)
