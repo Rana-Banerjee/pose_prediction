@@ -13,3 +13,4 @@ Currently displays only the skeleton
 
 ### To dos:
 - Add functionality to display and highlight the joints and show the confidence scores
+- Increase throughput, decrease latency via multi threading
