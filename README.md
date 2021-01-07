@@ -4,9 +4,9 @@ Uses opencv to capture the web camera stream and overlays the pose predictions b
 Currently displays only the skeleton
 
 ## Project file details
-`pose_display.py` : Main code that takes webcam feed, performs pose detections and diplays it
-`requirements.txt`: Dependencies to be installed
-`images` : Sample images of demo run
+- `pose_display.py` : Main code that takes webcam feed, performs pose detections and diplays it
+- `requirements.txt`: Dependencies to be installed
+- `images` : Sample images of demo run
 
 ## Setup
 - Create a virtual environment with python version 3.7
