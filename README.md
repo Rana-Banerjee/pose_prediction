@@ -18,3 +18,6 @@ python3 pose_display.py
 ### To dos:
 - Add functionality to display and highlight the joints and show the confidence scores
 - Increase throughput, decrease latency via multi threading
+
+### Sample demo images:
+![alt text](https://github.com/Rana-Banerjee/pose_prediction/blob/main/images/1.png?raw=true)
